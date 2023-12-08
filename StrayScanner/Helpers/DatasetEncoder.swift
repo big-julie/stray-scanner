@@ -43,6 +43,7 @@ class DatasetEncoder {
         
         let width = arConfiguration.videoFormat.imageResolution.width
         let height = arConfiguration.videoFormat.imageResolution.height
+        print("wideth: ", width, "height: ", height)
         var theId: UUID = UUID()
         datasetDirectory = DatasetEncoder.createDirectory(id: &theId)
         self.id = theId
