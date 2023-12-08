@@ -13,7 +13,7 @@ import ARKit
 import CoreData
 import CoreMotion
 
-let FpsDividers: [Int] = [1, 2, 4, 12, 60]
+let FpsDividers: [Int] = [1, 2, 4, 12, 30, 60]
 let AvailableFpsSettings: [Int] = FpsDividers.map { Int(60 / $0) }
 let FpsUserDefaultsKey: String = "FPS"
 
@@ -96,6 +96,11 @@ class RecordSessionViewController : UIViewController, ARSessionDelegate {
             unsupported = true
         } else {
             config.frameSemantics.insert(.sceneDepth)
+            
+            if let res4KCaptureVideoFormat = ARWorldTrackingConfiguration.recommendedVideoFormatFor4KResolution {
+                // Assign the video format that supports hi-res capturing.
+            config.videoFormat = res4KCaptureVideoFormat
+            }
             session.run(config)
         }
     }
